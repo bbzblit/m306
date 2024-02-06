@@ -28,7 +28,7 @@
         <div id="bg-1"></div>
         <div id="bg-2"></div>
     </main>
-    <footer class="bg-[#0d1117] w-full h-12  flex items-center justify-between px-4 border-t border-gray-700">
+    <footer class="bg-[#0d1117] w-full h-12 flex items-center justify-between px-4 border-t border-gray-700">
         <span>&copy; bbzbl-it.dev 2024</span>
         <span id="links">
             <a href="mailto:support@bbzbl-it.dev">
