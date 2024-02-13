@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -21,8 +22,8 @@
     <header class="bg-transparent w-full h-16 absolute px-4 border-b z-10 border-gray-700 flex items-center justify-between">
         <h1 class="inline-block font-bold text-3xl">M306</h1>
     </header>
-    <main class="!h-[calc(100vh-3rem)] bg-[#050514] p-4 pt-20 backdrop-blur-md overflow-hidden">
-        <div>
+    <main class="!h-[calc(100vh-3rem)] bg-[#111827] p-4 pt-20 backdrop-blur-md overflow-hidden">
+        <div class="z-50 h-full">
             @inertia
         </div>
         <div id="bg-1"></div>
@@ -47,6 +48,7 @@
 </html>
 
 <style>
+    /*
     #bg-1 {
         background-image: url("img/bg-1.png");
         height: 610px;
@@ -57,6 +59,7 @@
         position: absolute;
         top: 10%;
         right: -10%;
+        z-index: -10;
     }
 
     #bg-2 {
@@ -70,5 +73,7 @@
         rotate: 60deg;
         z-index: 200;
         background-size: 100% 150%;
+        z-index: -10;
     }
+    */
 </style>

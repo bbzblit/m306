@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,6 +18,20 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Index', [
+    ]);
+});
+
+Route::post("/register",  [AuthController::class, 'register']);
+
+Route::get("/register", function () {
+    return Inertia::render("Auth/Register", [
+    ]);
+});
+
+
+
+Route::get("/login", function () {
+    return Inertia::render("Auth/Login", [
     ]);
 });
 
