@@ -1,7 +1,13 @@
 <template>
     <div class="bg-transparent border-none relative flex flex-col w-80">
         <label class="pb-2">{{ label }}</label>
-        <input v-bind="$attrs" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" :maxlength="max" :minlength="min" :required="required" :type="type" :placeholder="placeholder" class="bg-[#1d2432] px-4 py-2 rounded-md" @invalid="invalid">
+        <div class="relative">
+            <input v-bind="$attrs" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
+                :maxlength="max" :minlength="min" :required="required" :type="state_type" :placeholder="placeholder"
+                class="bg-[#1d2432] px-4 py-2 rounded-md w-full" @invalid="invalid">
+            <i v-if="isPassword" class="fa-solid fa-eye absolute right-2 bottom-[13px] cursor-pointer"
+                @click="togglePassword"></i>
+        </div>
         <div class="min-h-6">
             <label class="text-red-600 font-bold text-sm mt-2">{{ error ? error : customError }}</label>
         </div>
@@ -9,7 +15,7 @@
 </template>
 
 <script>
-export default{
+export default {
     name: 'FormInput',
     emits: ['update:modelValue'],
     props: {
@@ -45,7 +51,10 @@ export default{
 
     data() {
         return {
-            error: ""
+            error: "",
+            isPassword: this.type === 'password',
+            state_type: this.type
+
         }
     },
 
@@ -65,9 +74,11 @@ export default{
             } else {
                 this.error = "Error";
             }
+        },
+        togglePassword() {
+            this.state_type = this.state_type === 'password' ? 'text' : 'password';
         }
     }
 }
 </script>
-<style>
-</style>
+<style></style>
