@@ -1,14 +1,14 @@
 <template>
     <div class="h-full flex items-center">
         <form-group :disabled="!isValid" title="Sign Up" label="Name" for="name">
-            <form-input name="first_name" max="255" type="text" label="First Name" placeholder="Your Name" required />
-            <form-input name="last_name" max="255" type="text" label="Last Name" placeholder="Your Name" required />
-            <form-input name="email" type="email" label="Email" placeholder="Your Email" required />
-            <form-input v-model="password" name="password" type="password" label="Password" placeholder="Your Password" required />
-            <form-input v-model="passwordConfirm" :customError="passwordMatchError" name="password_confirmation" type="password" label="Confirm Password" placeholder="Confirm Password" required />
+            <form-input v-model="values.first_name" name="first_name" type="text" label="First Name" placeholder="Your Name" required />
+            <form-input v-model="values.last_name" name="last_name" type="text" label="Last Name" placeholder="Your Name" required />
+            <form-input v-model="values.email" name="email" type="email" label="Email" placeholder="Your Email" required @update:modelValue="resetErrors" />
+            <form-input v-model="values.password" name="password" type="password" label="Password" placeholder="Your Password" required />
+            <form-input v-model="values.password_confirmation" :customError="customError" name="password_confirmation" type="password" label="Confirm Password" placeholder="Confirm Password" required />
             <a href="login" class="text-blue-600">Already have an account?</a>
         </form-group>
-    </div>
+</div>
 </template>
 
 <script>
@@ -23,17 +23,35 @@ export default {
     },
     data() {
         return {
-            password: '',
-            passwordConfirm: ''
+            values: {
+                first_name: '',
+                last_name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+                ...window.old
+            },
+            errors: window.error
+        }
+    },
+
+    methods: {
+        resetErrors() {
+            this.errors = [];
         }
     },
 
     computed: {
         isValid() {
-            return this.password === this.passwordConfirm;
+            return this.values.password === this.values.password_confirmation;
         },
-        passwordMatchError() {
-            return this.isValid ? '' : 'Passwords do not match';
+        customError() {
+            if (!this.isValid){
+                return 'Passwords do not match';
+            }
+            if (this.errors.length > 0){
+                return this.errors[0];
+            }
         }
     }
 }

@@ -2,8 +2,9 @@
     <div class="bg-transparent border-none relative flex flex-col w-80">
         <label class="pb-2">{{ label }}</label>
         <div class="relative">
-            <input v-bind="$attrs" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
-                :maxlength="max" :minlength="min" :required="required" :type="state_type" :placeholder="placeholder"
+            <input v-bind="$attrs" :value="modelValue"
+                @input="modelValue = $event.target.value; $emit('update:modelValue', $event.target.value)" :maxlength="max"
+                :minlength="min" :required="required" :type="state_type" :placeholder="placeholder"
                 class="bg-[#1d2432] px-4 py-2 rounded-md w-full" @invalid="invalid">
             <i v-if="isPassword" class="fa-solid fa-eye absolute right-2 bottom-[13px] cursor-pointer"
                 @click="togglePassword"></i>

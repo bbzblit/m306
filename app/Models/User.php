@@ -28,4 +28,8 @@ class User extends Model
         "deleted_at",
         "remember_token",
     ];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
 }

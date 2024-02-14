@@ -38,15 +38,18 @@
             <a href="https://github.com/bbzblit">
                 <i class="fa-brands fa-github cursor-pointer px-4"></i>
             </a>
-            <a href="https://github.com/bbzblit/m306 px-4">
+            <a href="https://github.com/bbzblit/m306">
                 <i class="fa-solid fa-code"></i>
             </a>
         </span>
     </footer>
 </body>
-
+ 
 </html>
-
+<script>
+window.old = JSON.parse("{{json_encode(Session::getOldInput())}}".replace(/&quot;/g, '"'));
+window.error = JSON.parse("{{json_encode($errors->all())}}".replace(/&quot;/g, '"'));
+</script>
 <style>
     /*
     #bg-1 {
