@@ -27,7 +27,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push
       run: |
-        apt update && apt install composer
+        sudo apt update && sudo apt install composer
         composer install
         npm i
         npm run build
