@@ -27,8 +27,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push
       run: |
-        sudo apt update && sudo apt install composer
-        composer install
-        npm i
-        npm run build
         docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/bbzblit/m306/app:latest --push .

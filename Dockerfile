@@ -1,12 +1,18 @@
-FROM php:8.2
+FROM debian:bookworm-slim as build-ui
+
+WORKDIR /data
+
+COPY . .
+
+RUN apt update && apt install -y nodejs npm composer php-dom php-xml php-curl && php --ini && composer install && npm i && npm run build
+
+FROM composer:2.7
 
 WORKDIR /var/www/html
 
-RUN apt update && apt upgrade -y && apt install -y zip unzip
-
-RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/local/bin --filename=composer
-
 COPY . .
+
+COPY --from=build-ui /data/public/build ./public/build
 
 RUN composer install
 
