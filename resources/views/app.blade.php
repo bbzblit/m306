@@ -24,7 +24,7 @@
         <div id="actions" class="relative">
             @if (Auth::check())
             <a href="/logout" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
-                <i class="fa-solid fa-sign-out"></i>
+                <i class="fa-solid fa-sign-out mr-2"></i>
                 Logout
             </a>
             @else
@@ -32,7 +32,7 @@
                 Register
             </a>
             <a href="/login" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock mr-2"></i>
                 Login
             </a>
             @endif
