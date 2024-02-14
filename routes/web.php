@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,8 +18,14 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Index', [
-    ]);
+    if (Auth::check()){
+        $user = Auth::user();
+
+        return Inertia::render('Index', [
+            "userName" => "{$user->first_name} {$user->last_name}"
+        ]);    
+    }
+    return Inertia::render('Index');
 });
 
 Route::post("/register",  [AuthController::class, 'register']);
@@ -35,5 +42,8 @@ Route::get("/login", function () {
     ]);
 });
 
+Route::post("/login", [AuthController::class, 'login']);
+
+Route::get("/logout", [AuthController::class, 'logout']);
 
 require __DIR__.'/auth.php';

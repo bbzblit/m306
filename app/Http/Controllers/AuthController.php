@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\Login;
 use App\Http\Requests\Auth\Register;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(Login $request)
     {
+        $credentials = $request->validated();
 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/');
+        }
+        
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
 
@@ -22,8 +32,13 @@ class AuthController extends Controller
 
 
 
-        return Inertia::render("Index", [
-            "userName" => "{$user->first_name} {$user->last_name}",
-        ]);
+        return redirect()->route('login');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }

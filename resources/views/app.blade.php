@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -21,6 +21,22 @@
 <body class="font-sans antialiased text-white">
     <header class="bg-transparent w-full h-16 absolute px-4 border-b z-10 border-gray-700 flex items-center justify-between">
         <h1 class="inline-block font-bold text-3xl">M306</h1>
+        <div id="actions" class="relative">
+            @if (Auth::check())
+            <a href="/logout" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
+                <i class="fa-solid fa-sign-out"></i>
+                Logout
+            </a>
+            @else
+            <a href="/register" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
+                Register
+            </a>
+            <a href="/login" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
+                <i class="fa-solid fa-lock"></i>
+                Login
+            </a>
+            @endif
+        </div>
     </header>
     <main class="!h-[calc(100vh-3rem)] bg-[#111827] p-4 pt-20 backdrop-blur-md overflow-hidden">
         <div class="z-50 h-full">
@@ -44,11 +60,11 @@
         </span>
     </footer>
 </body>
- 
+
 </html>
 <script>
-window.old = JSON.parse("{{json_encode(Session::getOldInput())}}".replace(/&quot;/g, '"'));
-window.error = JSON.parse("{{json_encode($errors->all())}}".replace(/&quot;/g, '"'));
+    window.old = JSON.parse("{{json_encode(Session::getOldInput())}}".replace(/&quot;/g, '"'));
+    window.error = JSON.parse("{{json_encode($errors->all())}}".replace(/&quot;/g, '"'));
 </script>
 <style>
     /*
