@@ -6,7 +6,7 @@
             <form-input v-model="values.email" name="email" type="email" label="Email" placeholder="Your Email" required @update:modelValue="resetErrors" />
             <form-input v-model="values.password" name="password" type="password" label="Password" placeholder="Your Password" required />
             <form-input v-model="values.password_confirmation" :customError="customError" name="password_confirmation" type="password" label="Confirm Password" placeholder="Confirm Password" required />
-            <a href="login" class="text-blue-600">Already have an account?</a>
+            <a href="login" class="text-gray-300 hover:text-gray-400 font-bold pb-2">Already have an account?</a>
         </form-group>
 </div>
 </template>

@@ -27,10 +27,7 @@ class AuthController extends Controller
 
     public function register(Register $request)
     {
-        error_log("Registering user");
         $user = User::create($request->validated());
-
-
 
         return redirect("/login");
     }

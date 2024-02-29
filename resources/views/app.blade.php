@@ -20,25 +20,26 @@
 
 <body class="font-sans antialiased text-white">
     <header class="bg-transparent w-full h-16 absolute px-4 border-b z-10 border-gray-700 flex items-center justify-between">
-        <h1 class="inline-block font-bold text-3xl">M306</h1>
-        <div id="actions" class="relative">
+        <h1 class="inline-block font-bold text-3xl">BetterLet</h1>
+        <div id="actions" class="relative flex">
             @if (Auth::check())
-            <a href="/logout" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
+            <a href="/logout" class="mx-3 py-3 px-2 rounded-md cursor-pointer">
                 <i class="fa-solid fa-sign-out mr-2"></i>
                 Logout
             </a>
             @else
-            <a href="/register" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
+            <a href="/register" class="mx-3 hover:text-gray-200 py-3 px-2 rounded-md cursor-pointer">
                 Register
             </a>
-            <a href="/login" class="mx-3 border border-gray-600 py-3 px-2 rounded-md cursor-pointer">
-                <i class="fa-solid fa-lock mr-2"></i>
+            <div class="h-10 my-auto w-[1px] bg-[#333333]">
+            </div>
+            <a href="/login" class="mx-3 hover:text-gray-400 py-3 px-2 rounded-md cursor-pointer">
                 Login
             </a>
             @endif
         </div>
     </header>
-    <main class="!h-[calc(100vh-3rem)] bg-[#111827] p-4 pt-20 backdrop-blur-md overflow-hidden">
+    <main class="!h-[calc(100vh-3rem)] bg-[#222222] p-4 pt-20 backdrop-blur-md overflow-hidden">
         <div class="z-50 h-full">
             @inertia
         </div>
@@ -46,16 +47,16 @@
         <div id="bg-2"></div>
     </main>
     <footer class="bg-[#0d1117] w-full h-12 flex items-center justify-between px-4 border-t border-gray-700">
-        <span>&copy; bbzbl-it.dev 2024</span>
+        <span>&copy; Betterlet 2024 - All rights reserved</span>
         <span id="links">
             <a href="mailto:support@bbzbl-it.dev">
-                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-regular fa-envelope hover:text-green-400"></i>
             </a>
             <a href="https://github.com/bbzblit">
-                <i class="fa-brands fa-github cursor-pointer px-4"></i>
+                <i class="fa-brands fa-github cursor-pointer px-4 hover:text-green-400"></i>
             </a>
             <a href="https://github.com/bbzblit/m306">
-                <i class="fa-solid fa-code"></i>
+                <i class="fa-solid fa-code hover:text-green-400"></i>
             </a>
         </span>
     </footer>

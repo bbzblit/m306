@@ -5,7 +5,7 @@
             <input v-bind="$attrs" :value="modelValue"
                 @input="modelValue = $event.target.value; $emit('update:modelValue', $event.target.value)" :maxlength="max"
                 :minlength="min" :required="required" :type="state_type" :placeholder="placeholder"
-                class="bg-[#1d2432] px-4 py-2 rounded-md w-full" @invalid="invalid">
+                class="bg-[#333333] px-4 py-2 rounded-md w-full" @invalid="invalid">
             <i v-if="isPassword" class="fa-solid fa-eye absolute right-2 bottom-[13px] cursor-pointer"
                 @click="togglePassword"></i>
         </div>

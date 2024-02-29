@@ -3,8 +3,8 @@
         <form-group title="Login" label="Name" for="name">
             <form-input v-model="values.email" name="email" type="email" label="Email" placeholder="Your Email" required />
             <form-input :customError="customError" v-model="values.password" name="password" type="password" label="Password" placeholder="Your Password" @change:modelValue="errors = []" required />
-            <a href="#" class="text-blue-600">Forgot your password?</a>
-            <a href="register" class="text-blue-600">Create an account</a>
+            <a href="#" class="text-gray-300 hover:text-gray-400 font-bold">Forgot your password?</a>
+            <a href="register" class="text-gray-300 hover:text-gray-400 pt-2 font-bold pb-2">Create an account</a>
         </form-group>
     </div>
 </template>
