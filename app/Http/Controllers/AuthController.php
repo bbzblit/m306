@@ -18,7 +18,7 @@ class AuthController extends Controller
 
             return redirect()->intended('/');
         }
-        
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     public function register(Register $request)
     {
-        $user = User::create($request->validated());
+        User::create($request->validated());
 
         return redirect("/login");
     }
