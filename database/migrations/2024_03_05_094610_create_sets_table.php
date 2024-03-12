@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
+            $table->uuid('owner');
+            $table->string('title');
             $table->timestamps();
+            $table->foreign('owner')->references('id')->on('users');
         });
     }
 

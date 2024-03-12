@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('falsh_cards', function (Blueprint $table) {
             $table->id();
+            $table->uuid('set_id');
+            $table->string('key');
+            $table->string('value');
+            $table->foreign('set_id')->references('id')->on('sets');
             $table->timestamps();
         });
     }
