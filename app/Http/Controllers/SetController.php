@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Set\Import;
 use App\Models\Set;
+use Inertia\Inertia;
 
 class SetController extends Controller
 {
@@ -39,6 +40,18 @@ class SetController extends Controller
 
         $set->cards()->createMany($cards);
         
-        return $set;
+        return redirect("/train/{$set->id}");
+    }
+
+    public function train(string $set)
+    {
+        
+        $set = Set::findOrFail($set);
+        $initial_flash_cards = $set->cards()->get();
+
+        return Inertia::render("Set/Train", [
+            "set" => $set,
+            "initialFlashCards" => $initial_flash_cards,
+        ]);
     }
 }

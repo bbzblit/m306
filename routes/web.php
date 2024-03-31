@@ -55,4 +55,6 @@ Route::get("/import", function () {
 
 Route::post("/import", [SetController::class, 'import']);
 
+Route::get("/train/{set}", [SetController::class, 'train']);
+
 require __DIR__.'/auth.php';
