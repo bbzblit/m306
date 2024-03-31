@@ -1,6 +1,9 @@
 <template>
-    <div class="m-12 t-18 flex flex-col items-start">
-        <learn-progress :ptr="completedCards" :max="totalCards"></learn-progress>
+    <div class="m-12 t-18 flex flex-col items-start" v-if="currentFlashCard">
+        <learn-progress
+            :ptr="completedCards"
+            :max="totalCards"
+        ></learn-progress>
         <flash-card
             :question="currentFlashCard.key"
             :answer="currentFlashCard.value"
@@ -8,7 +11,10 @@
             @flip="showAnswer = !showAnswer"
         ></flash-card>
         <div class="mt-8 w-40 mx-auto flex justify-between items-center">
-            <i @click="repeat" class="fa-solid fa-x text-xl cursor-pointer text-red-500 hover:text-red-600"></i>
+            <i
+                @click="repeat"
+                class="fa-solid fa-x text-xl cursor-pointer text-red-500 hover:text-red-600"
+            ></i>
             <i
                 @click="this.showAnswer = !this.showAnswer"
                 class="fa-solid fa-repeat cursor-pointer hover:text-gray-300"
@@ -18,6 +24,16 @@
                 class="fa-solid fa-check text-xl cursor-pointer text-green-500 hover:text-green-600"
             ></i>
         </div>
+    </div>
+    <div
+        v-else
+        class="flex items-center flex-col completion-screen justify-center h-full"
+    >
+        <h1 class="rainbow">Congratulation</h1>
+        <h2 class="rainbow text-xl">
+            You have successfully completed this course
+        </h2>
+        <h2 class="rainbow text-xl">Press any key to continue</h2>
     </div>
 </template>
 
@@ -53,15 +69,16 @@ export default {
 
     methods: {
         click(event) {
+            if (this.totalCards == this.completedCards) {
+                window.location = "/";
+            }
             if (event.code === "Space") {
                 this.showAnswer = !this.showAnswer;
-            }
-            else if(event.code == "Digit1"){
+            } else if (event.code == "Digit1") {
                 this.repeat();
-            } else if(event.code == "Digit2"){
+            } else if (event.code == "Digit2") {
                 this.completed();
             }
-            console.log(event.code)
         },
 
         repeat() {
@@ -96,4 +113,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    overflow: hidden;
+}
+
+
+</style>
