@@ -3,7 +3,7 @@
         <form-group :disabled="!isValid" title="Sign Up" label="Name" for="name">
             <form-input v-model="values.first_name" name="first_name" type="text" label="First Name" placeholder="Your Name" required />
             <form-input v-model="values.last_name" name="last_name" type="text" label="Last Name" placeholder="Your Name" required />
-            <form-input v-model="values.email" name="email" type="email" label="Email" placeholder="Your Email" required @update:modelValue="resetErrors" />
+            <form-input v-model="values.email" name="email" :customError="emailNotMachError" type="email" label="Email" placeholder="Your Email" required @update:modelValue="resetErrors" />
             <form-input v-model="values.password" name="password" type="password" label="Password" placeholder="Your Password" required />
             <form-input v-model="values.password_confirmation" :customError="customError" name="password_confirmation" type="password" label="Confirm Password" placeholder="Confirm Password" required />
             <a href="login" class="text-gray-300 hover:text-gray-400 font-bold pb-2">Already have an account?</a>
@@ -49,7 +49,12 @@ export default {
             if (!this.isValid){
                 return 'Passwords do not match';
             }
-            if (this.errors.length > 0){
+            if (this.errors.length > 0 && !this.errors[0].includes('email')){
+                return this.errors[0];
+            }
+        },
+        emailNotMachError() {
+            if (this.errors.length > 0 && this.errors[0].includes('email')){
                 return this.errors[0];
             }
         }

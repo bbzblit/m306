@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sets', function (Blueprint $table) {
-            $table->id();
+            $table->uuid("id")->primary();
             $table->timestamps();
+            $table->string("title");
+            $table->uuid("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->cascadeOnDelete();
         });
     }
 

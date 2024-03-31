@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SetController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,13 @@ Route::get("/login", function () {
 Route::post("/login", [AuthController::class, 'login']);
 
 Route::get("/logout", [AuthController::class, 'logout']);
+
+Route::get("/import", function () {
+    return Inertia::render("Set/Import", [
+    ]);
+});
+
+
+Route::post("/import", [SetController::class, 'import']);
 
 require __DIR__.'/auth.php';
