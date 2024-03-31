@@ -2,38 +2,51 @@
     <div class="bg-transparent border-none relative flex flex-col w-80">
         <label class="pb-2">{{ label }}</label>
         <div class="relative">
-            <input v-bind="$attrs" :value="modelValue"
-                @input="modelValue = $event.target.value; $emit('update:modelValue', $event.target.value)" :maxlength="max"
-                :minlength="min" :required="required" :type="state_type" :placeholder="placeholder"
-                class="bg-[#333333] px-4 py-2 rounded-md w-full" @invalid="invalid">
-            <i v-if="isPassword" class="fa-solid fa-eye absolute right-2 bottom-[13px] cursor-pointer"
-                @click="togglePassword"></i>
+            <input
+                v-bind="$attrs"
+                :value="modelValue"
+                @input="onInput($event.target.value)"
+                :maxlength="max"
+                :minlength="min"
+                :required="required"
+                :type="state_type"
+                :placeholder="placeholder"
+                class="bg-[#333333] px-4 py-2 rounded-md w-full"
+                @invalid="invalid"
+                />
+            <i
+                v-if="isPassword"
+                class="fa-solid fa-eye absolute right-2 bottom-[13px] cursor-pointer"
+                @click="togglePassword"
+            ></i>
         </div>
         <div class="min-h-6">
-            <label class="text-red-600 font-bold text-sm mt-2">{{ error ? error : customError }}</label>
+            <label class="text-red-600 font-bold text-sm mt-2">{{
+                error ? error : customError
+            }}</label>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'FormInput',
-    emits: ['update:modelValue'],
+    name: "FormInput",
+    emits: ["update:modelValue"],
     props: {
         label: {
             type: String,
         },
         type: {
             type: String,
-            default: 'text'
+            default: "text",
         },
         placeholder: {
             type: String,
-            default: ''
+            default: "",
         },
         required: {
             type: Boolean,
-            default: false
+            default: false,
         },
         max: {
             type: Number,
@@ -42,21 +55,20 @@ export default {
             type: Number,
         },
         modelValue: {
-            default: ''
+            default: "",
         },
         customError: {
             type: String,
-            default: ''
-        }
+            default: "",
+        },
     },
 
     data() {
         return {
             error: "",
-            isPassword: this.type === 'password',
-            state_type: this.type
-
-        }
+            isPassword: this.type === "password",
+            state_type: this.type,
+        };
     },
 
     methods: {
@@ -77,9 +89,15 @@ export default {
             }
         },
         togglePassword() {
-            this.state_type = this.state_type === 'password' ? 'text' : 'password';
-        }
-    }
-}
+            this.state_type =
+                this.state_type === "password" ? "text" : "password";
+        },
+
+        onInput(value) {
+            this.error = "";
+            this.$emit("update:modelValue", value);
+        },
+    },
+};
 </script>
 <style></style>

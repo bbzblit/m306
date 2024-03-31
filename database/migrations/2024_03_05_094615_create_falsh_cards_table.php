@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('falsh_cards', function (Blueprint $table) {
-            $table->id();
+        Schema::create('flash_cards', function (Blueprint $table) {
+            $table->uuid("id")->primary();
             $table->timestamps();
+            $table->string('key');
+            $table->string('value');
+            $table->uuid('set_id');
+            $table->foreign('set_id')->references('id')->on('sets')->cascadeOnDelete();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('falsh_cards');
+        Schema::dropIfExists('flash_cards');
     }
 };

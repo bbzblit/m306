@@ -6,22 +6,19 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Set extends Model
+class FlashCard extends Model
 {
     use HasFactory, HasUuids;
-
-    protected $table = 'sets';
+    
+    protected $table = 'flash_cards';
 
     protected $fillable = [
-        "title",
-        "user_id"
+        "key",
+        "value",
+        'set_id',
     ];
 
     public function post(){
-        return $this->belongsTo(User::class);
-    }
-
-    public function cards(){
-        return $this->hasMany(FlashCard::class);
+        return $this->belongsTo(Set::class);
     }
 }
