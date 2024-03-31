@@ -40,12 +40,11 @@ export default {
 
     watch: {
         flipped(newValue) {
+            const newDisplayValue = this.displayedValue == this.question ? this.answer : this.question
             this.gotFlipped = false;
             new Promise((resolve) => setTimeout(resolve, 150)).then(
                 () =>
-                    (this.displayedValue = newValue
-                        ? this.answer
-                        : this.question)
+                    (this.displayedValue = newDisplayValue)
             );
             new Promise((resolve) => setTimeout(resolve, 320)).then(
                 () => (this.gotFlipped = true)
@@ -54,6 +53,7 @@ export default {
 
         answer(newAnswer) {
             this.displayedValue = newAnswer;
+            
         },
 
         question(newQuestion) {

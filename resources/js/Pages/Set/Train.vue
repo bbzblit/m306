@@ -56,6 +56,12 @@ export default {
             if (event.code === "Space") {
                 this.showAnswer = !this.showAnswer;
             }
+            else if(event.code == "Digit1"){
+                this.repeat();
+            } else if(event.code == "Digit2"){
+                this.completed();
+            }
+            console.log(event.code)
         },
 
         repeat() {
