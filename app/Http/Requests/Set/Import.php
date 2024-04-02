@@ -23,7 +23,9 @@ class Import extends FormRequest
     public function rules(): array
     {
         return [
-            "export" => ["required", "string"]
+            "export" => ["required", "string"],
+            "title" => ["required", "string", "max:255"],
+            "description" => ["required", "string"],
         ];
     }
 }

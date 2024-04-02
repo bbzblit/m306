@@ -14,8 +14,8 @@ class SetController extends Controller
         
         $data = trim($data);
         $set = Set::create([
-            "title" => "Imported Set",
-            "description" => "Lorem ipsum dolor sit amet, consetetur sadipscing",
+            "title" => $request->string("title"),
+            "description" => $request->string("description"),
             "user_id" => auth()->id(),
         ]);
 
