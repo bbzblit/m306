@@ -1,7 +1,7 @@
 <template>
     <div class="w-full mb-16 relative">
         <div class="h-3 relative">
-            <div class="bg-gray-50 h-3 rounded-lg"></div>
+            <div class="bg-transparent h-3 rounded-lg"></div>
             <div
                 id="progressbar"
                 class="absolute h-3 rounded-lg top-0"
