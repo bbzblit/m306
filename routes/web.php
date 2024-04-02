@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SetController;
-use Illuminate\Foundation\Application;
+use App\Models\Set;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,9 +23,12 @@ use Inertia\Inertia;
 Route::get('/', function () {
     if (Auth::check()){
         $user = Auth::user();
-
+        
+        $sets = DB::table("sets")->where("user_id", $user->id)->limit(20)->get();
+        
         return Inertia::render('Index', [
-            "userName" => "{$user->first_name} {$user->last_name}"
+            "userName" => "{$user->first_name} {$user->last_name}",
+            "sets" => $sets,
         ]);    
     }
     return Inertia::render('Index');

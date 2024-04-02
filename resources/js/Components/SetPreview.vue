@@ -1,11 +1,31 @@
 <template>
-    <div class="w-full h-20">
-        <h1>Hello World</h1>
+    <div @click="reroute" class="w-[30rem] min-h-28 mr-4 border border-gray-500 p-4 rounded-lg m-4 hover:scale-110 cursor-pointer">
+        <h1 class="font-bold text-xl">{{ set.title }}</h1>
+        <h2>{{ set.description }}</h2>
+        <span class="text-sm italic">Last Update {{ updatedAt }}</span>
     </div>
 </template>
 <script>
 export default{
     name: "SetPreview",
+    props: {
+        set: {
+            type: Object,
+            required: true,
+            default: () => {},
+        },
+    },
+
+    methods: {
+        reroute() {
+            window.location = `/train/${this.set.id}`;
+        },
+    },
+    computed: {
+        updatedAt() {
+            return new Date(this.set.updated_at).toLocaleDateString();
+        },
+    }
 }
 </script>
 <style>

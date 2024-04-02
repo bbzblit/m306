@@ -20,7 +20,7 @@
 
 <body class="font-sans antialiased text-white">
     <header class="bg-transparent w-full h-16 absolute px-4 border-b z-10 border-gray-700 flex items-center justify-between">
-        <h1 class="inline-block font-bold text-3xl">BetterLet</h1>
+        <h1 class="inline-block font-bold text-3xl cursor-pointer" onclick="window.location.replace('/')">BetterLet</h1>
         <div id="actions" class="relative flex">
             @if (Auth::check())
             <a href="/logout" class="mx-3 py-3 px-2 rounded-md cursor-pointer">

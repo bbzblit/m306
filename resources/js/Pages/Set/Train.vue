@@ -1,5 +1,5 @@
 <template>
-    <div class="m-12 t-18 flex flex-col items-start" v-if="currentFlashCard">
+    <div class="mr-12 t-18 flex flex-col items-start" v-if="currentFlashCard">
         <learn-progress
             :ptr="completedCards"
             :max="totalCards"
