@@ -1,6 +1,13 @@
 <template>
     <div class="mx-12 my-8" v-if="authentificated">
-        <h1 class="text-3xl rainbow">Welcome back, {{ userName }}</h1>
+        <div class="flex items-end justify-between">
+            <h1 class="text-3xl rainbow m-0">Welcome back, {{ userName }}</h1>
+            <i
+                class="fa-solid fa-plus my-auto mx-4 text-xl cursor-pointer"
+                @click="redirect"
+            ></i>
+        </div>
+        <div class="h-[1px] bg-[#333333] w-full mt-4"></div>
         <div class="mt-8">
             <input
                 @keypress.prevent.enter="search"
@@ -13,7 +20,20 @@
             </button>
         </div>
         <div class="mt-12 flex flex-wrap items-center justify-start">
-            <set-preview v-for="set in sets" :key="set.id" :set="set"></set-preview>
+            <set-preview
+                v-for="set in sets"
+                :key="set.id"
+                :set="set"
+            ></set-preview>
+            <div
+                @click="redirect"
+                class="w-[30rem] min-h-28 mr-4 border border-dashed border-gray-500 p-4 rounded-lg m-4 hover:scale-110 cursor-pointer flex align-center justify-center"
+            >
+                <i
+                    class="fa-solid fa-plus text-xl text-gray-500 m-auto"
+                    @click="redirect"
+                ></i>
+            </div>
         </div>
     </div>
     <div v-else>
@@ -34,8 +54,8 @@ export default {
         },
         sets: {
             type: Array,
-            default: () => []
-        }
+            default: () => [],
+        },
     },
     data() {
         return {
@@ -46,6 +66,9 @@ export default {
     methods: {
         search() {
             console.log("searching...", this.sets);
+        },
+        redirect() {
+            window.location = "/import";
         },
     },
     computed: {

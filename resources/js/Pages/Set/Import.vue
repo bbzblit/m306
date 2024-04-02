@@ -16,7 +16,7 @@
         ></form-input>
         <textarea
             name="export"
-            class="bg-[#333333] px-4 py-2 rounded-md w-2/3 h-60"
+            class="bg-[#333333] px-4 py-2 rounded-md w-2/3 h-60 mb-8 mt-4"
             placeholder="The key value pairs go here..."
             required
         ></textarea>
