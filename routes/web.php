@@ -24,7 +24,7 @@ Route::get('/', function () {
     if (Auth::check()){
         $user = Auth::user();
         
-        $sets = DB::table("sets")->where("user_id", $user->id)->limit(20)->get();
+        $sets = DB::table("sets")->where("user_id", $user->id)->get();
         
         return Inertia::render('Index', [
             "userName" => "{$user->first_name} {$user->last_name}",
@@ -61,5 +61,10 @@ Route::get("/import", function () {
 Route::post("/import", [SetController::class, 'import']);
 
 Route::get("/train/{set}", [SetController::class, 'train']);
+
+Route::get("/passwordreset", function () {
+    return Inertia::render("Auth/PasswordReset", [
+    ]);
+});
 
 require __DIR__.'/auth.php';

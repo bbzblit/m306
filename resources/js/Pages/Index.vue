@@ -10,7 +10,7 @@
         <div class="h-[1px] bg-[#333333] w-full mt-4"></div>
         <div class="mt-8">
             <input
-                @keypress.prevent.enter="search"
+                @keydown="search"
                 placeholder="Search"
                 v-model="query"
                 class="bg-[#333333] px-4 py-2 rounded-3xl w-[40rem]"
@@ -21,7 +21,7 @@
         </div>
         <div class="mt-12 flex flex-wrap items-center justify-start">
             <set-preview
-                v-for="set in sets"
+                v-for="set in previewSets"
                 :key="set.id"
                 :set="set"
             ></set-preview>
@@ -60,12 +60,15 @@ export default {
     data() {
         return {
             query: "",
+            previewSets: this.sets,
         };
     },
 
     methods: {
         search() {
-            console.log("searching...", this.sets);
+            this.previewSets = this.sets.filter((set) =>
+                set.title.toLowerCase().includes(this.query.toLowerCase())
+            );
         },
         redirect() {
             window.location = "/import";
