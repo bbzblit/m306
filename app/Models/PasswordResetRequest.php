@@ -10,21 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PasswordResetRequest extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes; # Because incremented IDs suck
+    use HasFactory, HasUuids; # Because incremented IDs suck
 
     protected $table = 'password_reset_requests';
 
     protected $fillable = [
         "user_id",
         "code"
-    ];
-
-    protected $hidden = [
-        "last_login_at",
-        "created_at",
-        "updated_at",
-        "deleted_at",
-        "remember_token"
     ];
 
     public function pwResetRequests(): BelongsTo

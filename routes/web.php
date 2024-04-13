@@ -21,15 +21,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    if (Auth::check()){
+    if (Auth::check()) {
         $user = Auth::user();
-        
+
         $sets = DB::table("sets")->where("user_id", $user->id)->get();
-        
+
         return Inertia::render('Index', [
             "userName" => "{$user->first_name} {$user->last_name}",
             "sets" => $sets,
-        ]);    
+        ]);
     }
     return Inertia::render('Index');
 });
@@ -37,15 +37,13 @@ Route::get('/', function () {
 Route::post("/register",  [AuthController::class, 'register']);
 
 Route::get("/register", function () {
-    return Inertia::render("Auth/Register", [
-    ]);
+    return Inertia::render("Auth/Register", []);
 });
 
 
 
 Route::get("/login", function () {
-    return Inertia::render("Auth/Login", [
-    ]);
+    return Inertia::render("Auth/Login", []);
 });
 
 Route::post("/login", [AuthController::class, 'login']);
@@ -53,8 +51,7 @@ Route::post("/login", [AuthController::class, 'login']);
 Route::get("/logout", [AuthController::class, 'logout']);
 
 Route::get("/import", function () {
-    return Inertia::render("Set/Import", [
-    ]);
+    return Inertia::render("Set/Import", []);
 });
 
 
@@ -63,8 +60,17 @@ Route::post("/import", [SetController::class, 'import']);
 Route::get("/train/{set}", [SetController::class, 'train']);
 
 Route::get("/passwordreset", function () {
-    return Inertia::render("Auth/PasswordReset", [
-    ]);
+    return Inertia::render("Auth/PasswordReset", []);
 });
 
-require __DIR__.'/auth.php';
+
+Route::post("/passwordreset", [AuthController::class, 'passwordReset']);
+
+Route::get("/passwordreset/{code}", function ($code) {
+    return Inertia::render("Auth/PasswordResetForm", []);
+});
+
+Route::post("/passwordreset/{code}", [AuthController::class, 'passwordResetForm']);
+
+
+require __DIR__ . '/auth.php';
