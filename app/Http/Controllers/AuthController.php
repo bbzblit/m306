@@ -91,7 +91,6 @@ class AuthController extends Controller
             $passwordResetRequest->delete();
         }
 
-        return Inertia::render("Auth/Login", [
-        ]);
+        return redirect("/login");
     }
 }
